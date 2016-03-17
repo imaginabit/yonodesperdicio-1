@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+    <%= t('nlt.welcome') %>,
+    <b>
+      <%= link_to current_user.username, profile_path(current_user), id: 'js-username' %>
+    </b> | 
+    <% unread_messages_count = current_user.unread_messages_count %>
+    <%= link_to messages_list_path, title: "#{unread_messages_count}" do %>
+      <%= image_tag "icons/ico_email.gif" %>
+      &nbsp;<b><%= unread_messages_count %></b>
+    <% end %>
+    |
+    <%= link_to t('nlt.logout'), destroy_user_session_path, :method => :delete %>
+<% else %>
+    <%#= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+    <%#= link_to t('nlt.new_user'), new_user_registration_path, "data-no-turbolink" => true %>
+<% end %>

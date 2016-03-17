@@ -1,0 +1,63 @@
+<div class="row homearriba col-md-12 col-xs-12">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <%= link_to (image_tag "propias/Home-Brick.png", :alt => "Imagen brick para 'Comparte'", :id => "brick", :class => "img-responsive"), particulares_url %>
+    <h3 class="titulos-home"><%= link_to 'COMPARTE' , particulares_url %></h3>
+    <p>Para subir información de los alimentos que quieres compartir es necesario que te registres. Esta web funciona, además, como una red social con la que comunicarte con el resto de usuarias/os.</p>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <%= link_to (image_tag "propias/Home-Recetas.png", :alt => "Imagen libro de recetas para 'Recetas y más...'", :id => "librorecetas", :class => "img-responsive"), ideas_url(category: 'recetas') %>
+    <h3 class="titulos-home"><%= link_to 'RECETAS Y MÁS...' , ideas_url(category: 'recetas') %></h3>
+    <p>En este espacio podrás encontrar y compartir ideas, trucos, buenas prácticas para mejorar la conservación y aprovechamiento de los alimentos y reducir el desperdicio.</p>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <%= link_to (image_tag "propias/Home-Mapa.png", :alt => "Imagen gente para 'Organizaciones'", :id => "organizaciones", :class => "img-responsive"), organizations_url %>
+    <h3 class="titulos-home"><%= link_to 'ORGANIZACIONES' , organizations_url %></h3>
+    <p>En nuestra ciudad o en nuestro barrio hay numerosas asociaciones, iniciativas vecinales, etc., que facilitan comida a familias cada día. ¿Conocemos dónde están? También puedes compartir tus alimentos con ellas.</p>
+  </div>
+</div><!--/homearriba-->
+
+<div class="homemedio col-md-12 col-xs-12">
+  <div class="col-md-2 col-sm-2 col-xs-1">
+    <%= image_tag "propias/cebolla.png", :alt => "Imagen cebolla", :id => "cebolla", :class => "img-responsive" %>
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-10">
+    <div id="contador" class="col-md-6 col-sm-6 col-xs-6"><%= number_with_precision(great_total_quantity, :precision => 3, :delimiter => ',') %> kg</div>
+    <div id="contador-texto" class="col-md-6 col-sm-6 col-xs-6">Son los kilos de comida que entre todos hemos conseguido evitar que acaben en la basura</div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-1">
+    <%= image_tag "propias/leche.png", :alt => "Imagen leche", :id => "leche", :class => "img-responsive" %>
+  </div>
+
+</div><!--/homemedio-->
+
+<div class="row homeabajo col-md-12 col-xs-12">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+
+    <!-- Una noticia -->
+    <% if @noticia %>
+      <%= link_to image_tag(@noticia.image.url(:fourthree), :alt => @noticia.title, :class => "img-responsive"), noticia_url(@noticia) %>
+      <h3 class="veinticinco"><span>[Noticia] </span><%= link_to @noticia.title, noticia_url(@noticia) %></h3>
+      <div class="cuerpazo"><%= link_to truncate_html(markdown(@noticia.body).html_safe, length: 200, omission: ' ... '), noticia_url(@noticia) %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <!-- Una idea -->
+    <% if @idea %>
+      <%= link_to image_tag(@idea.image.url(:fourthree), :alt => @idea.title, :class => "img-responsive"), idea_url(@idea) %>
+      <h3 class="veinticinco"><span>[Idea] </span><%= link_to @idea.title, idea_url(@idea) %></h3>
+      <div class="cuerpazo"><%= link_to truncate_html(markdown(@idea.introduction).html_safe, length: 200, omission: ' ... '), idea_url(@idea) if @idea.introduction %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div id="tweets" class="col-md-4 col-sm-4 col-xs-12">
+    <a class="twitter-timeline"  href="https://twitter.com/nodesperdicio" data-widget-id="638396445943533568" height="400">Tweets de @nodesperdicio.</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div>
+</div><!--/homeabajo--->

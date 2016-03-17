@@ -1,0 +1,5 @@
+<ul id="insidenav">
+  <% if user_signed_in? and user.id == current_user.id %>
+    <li><%= link_to_unless_current t('Volver al perfil'), profile_path(user) %></li>  
+  <% end %>
+</ul>

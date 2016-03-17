@@ -1,0 +1,10 @@
+<% woeid_name = WoeidHelper.convert_woeid_name current_user.woeid %>
+<%= content_for(:meta_title, "#{t('nlt.publish_ad')} - #{woeid_name[:short]}" ) %>
+
+<div id="newinside" class="col-md-6 col-md-offset-3">
+  <h1 id="title"><%= current_user.name %> - <%= t 'nlt.publish_ad' %>
+  	<%#= woeid_name[:short] %></h1>
+  <%= render 'form' %>
+</div><!--/newinside-->
+
+<center><%= image_tag "propias/bodegon-formularios.png", :alt => "Imagen bodegón'", :class => "img-responsive" %></center>
